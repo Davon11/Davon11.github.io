@@ -148,6 +148,148 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-集群框架常用命令行操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/04/%E9%9B%86%E7%BE%A4%E6%A1%86%E6%9E%B6%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/">集群框架常用命令行操作</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/04/%E9%9B%86%E7%BE%A4%E6%A1%86%E6%9E%B6%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-04-04T12:37:00.284Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="集群框架常用命令行操作"><a href="#集群框架常用命令行操作" class="headerlink" title="集群框架常用命令行操作"></a>集群框架常用命令行操作</h1><hr>
+<h2 id="hadoop"><a href="#hadoop" class="headerlink" title="hadoop"></a>hadoop</h2><ul>
+<li><strong>hdfs:</strong> </li>
+</ul>
+<p>框架启停</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">单点启动</span></span><br><span class="line">sbin/hadoop-daemon.sh start namenode</span><br><span class="line"><span class="meta">#</span><span class="bash">群起</span></span><br><span class="line">sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
+
+<p>操作dfs</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">eg：列出分布式文件系统根目录下的所有文件</span></span><br><span class="line">bin/hadoop fs -ls /</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>yarn</strong></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">单点启动</span></span><br><span class="line">sbin/hadoop-daemon.sh start namenode</span><br><span class="line"><span class="meta">#</span><span class="bash">群起</span></span><br><span class="line">sbin/start-dfssh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">job历史服务</span></span><br><span class="line">sbin/mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Zookeeper-QuorumPeerMain"><a href="#Zookeeper-QuorumPeerMain" class="headerlink" title="Zookeeper [QuorumPeerMain]"></a>Zookeeper [QuorumPeerMain]</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">服务端单点启动</span></span><br><span class="line">bin/zkServer.sh start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">客户端启动</span></span><br><span class="line">bin/zkCli.sh [-server hostname:port]</span><br></pre></td></tr></table></figure>
+
+<p>命令行命令</p>
+<table>
+<thead>
+<tr>
+<th>命令基本语法</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>help</td>
+<td>显示所有操作命令</td>
+</tr>
+<tr>
+<td>ls path [watch]</td>
+<td>使用 ls 命令来查看当前znode中所包含的内容</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>查看节点状态</td>
+</tr>
+<tr>
+<td>ls2 path [watch]</td>
+<td>查看当前节点数据及状态信息，相当于ls+stat</td>
+</tr>
+<tr>
+<td>get path [watch]</td>
+<td>获得节点的值</td>
+</tr>
+<tr>
+<td>create</td>
+<td>普通创建  -s 创建一个带sequnence（递增序号）的目录  -e 临时（session关闭后消失）</td>
+</tr>
+<tr>
+<td>set path data [dataVersion]</td>
+<td>设置节点的具体值</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除节点</td>
+</tr>
+<tr>
+<td>rmr</td>
+<td>递归删除节点</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="hive（基于hadoop）-Runjar"><a href="#hive（基于hadoop）-Runjar" class="headerlink" title="hive（基于hadoop）[Runjar]"></a>hive（基于hadoop）[Runjar]</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">未更改引擎启动服务端</span></span><br><span class="line">bin/hiveserver2 &amp;</span><br><span class="line"><span class="meta">#</span><span class="bash">更改引擎后启动服务端</span></span><br><span class="line">bin/hive --service metastore &amp;</span><br><span class="line"><span class="meta">#</span><span class="bash">=====================</span></span><br><span class="line"><span class="meta">#</span><span class="bash">客户端启动</span></span><br><span class="line"></span><br><span class="line">bin/hive</span><br><span class="line"><span class="meta">#</span><span class="bash">可用shell命令</span></span><br><span class="line"></span><br><span class="line">bin/beeline</span><br><span class="line"><span class="meta">#</span><span class="bash">不可用shell命令</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="flume-Application"><a href="#flume-Application" class="headerlink" title="flume [Application]"></a>flume [Application]</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">运行帮助文档</span></span><br><span class="line">bin/flume-ng help</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">运行Agent</span></span><br><span class="line">bin/flume-ng agent -c &lt;confDirectory&gt; -n &lt;agentName&gt; -f &lt;confFile&gt; -Dproperty=value</span><br><span class="line"><span class="meta">#</span><span class="bash">eg：控制台输出日志</span></span><br><span class="line">bin/flume-ng agent -c conf/ -n a1 -f myagent/fl1 -Dflume.root.logger=DEBUG,console</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="kafka-基于zookeeper"><a href="#kafka-基于zookeeper" class="headerlink" title="kafka(基于zookeeper)"></a>kafka(基于zookeeper)</h2><p>服务端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">服务端启停</span></span><br><span class="line">bin/kafka-server-start.sh -daemon config/server.properties</span><br><span class="line">bin/kafka-server-stop.sh</span><br></pre></td></tr></table></figure>
+
+<p>主题相关</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">===================================</span></span><br><span class="line"><span class="meta">#</span><span class="bash">config/server.properties中配置的zookeeper.connect=hadoop102:2181,hadoop103:2181,hadoop104:2181/mykafka</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看当前服务器中的所有topic</span></span><br><span class="line">bin/kafka-topics.sh --zookeeper hadoop102:2181/mykafka --list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建topic </span></span><br><span class="line"><span class="meta">#</span><span class="bash">--replication-factor  定义副本数	--partitions  定义分区数</span></span><br><span class="line">[atguigu@hadoop102 kafka]$ bin/kafka-topics.sh --zookeeper hadoop102:2181/mykafka --create --replication-factor 3 --partitions 1 --topic topicName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">删除topic</span></span><br><span class="line">bin/kafka-topics.sh --zookeeper hadoop102:2181/mykafka --delete --topic topicName</span><br><span class="line"><span class="meta">#</span><span class="bash">需要server.properties中设置delete.topic.enable=<span class="literal">true</span>否则只是标记删除。</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看某个Topic的详情</span></span><br><span class="line">bin/kafka-topics.sh --zookeeper hadoop102:2181 --describe --topic topicName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改指定Topic分区数</span></span><br><span class="line">bin/kafka-topics.sh --zookeeper hadoop102:2181 --alter --topic topicName --partitions 6</span><br></pre></td></tr></table></figure>
+
+<p>消息相关，注意不同情况使用broker-list、zookeeper、bootstrap-server及端口号的区别</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">发送消息</span></span><br><span class="line">bin/kafka-console-producer.sh --broker-list hadoop102:9092 --topic topicName</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">hello world</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">atguigu  atguigu</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">消费消息</span></span><br><span class="line">bin/kafka-console-consumer.sh --zookeeper hadoop102:2181 --topic topicName</span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server hadoop102:9092 --topic topicName</span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh \</span><br><span class="line">--bootstrap-server hadoop102:9092 --from-beginning --topic topicName</span><br><span class="line"><span class="meta">#</span><span class="bash">--from-beginning：会把主题中以往所有的数据都读取出来。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/04/%E9%9B%86%E7%BE%A4%E6%A1%86%E6%9E%B6%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博文" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
